@@ -1,4 +1,5 @@
 $(document).ready(function() {
+  $('.avatar').tooltip();
   $("#tweet-controls").hide();
 
 //Increase the tweet compose box size on click
@@ -102,20 +103,26 @@ $(document).ready(function() {
           </div>
         </div>
         <div class="reply">
-          <img class="avatar" src="img/jason.jpg" />
+          <img class="avatar" src="img/jason.jpg" title="${name}" />
           <textarea class="tweet-reply" placeholder="Reply to ${username}"/></textarea>
         </div>
       </div>
     </div>'`);
     resetTextCompose();
     $('.stats').hide();
+    $('.avatar').tooltip();
   });
 
 //Calculate the time since posting
-  $('.time').each(function(){
-    var time = $(this).text();
-    console.log(time);
-    $(this).text(moment(time).fromNow());
-  });
+  window.setInterval(myTimer(), 1000);
+
+  function myTimer() {
+    $('.time').each(function(){
+      var time = $(this).text();
+      $(this).text(moment(time).fromNow());
+    });
+  }
+
+
 
 });
